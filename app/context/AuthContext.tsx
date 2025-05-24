@@ -10,13 +10,13 @@ import React, {
 } from 'react';
 
 interface User {
-  fullName?: string; // your API returns firstName + lastName separately, you can compose it later
+  fullName?: string; 
   firstName?: string;
   lastName?: string;
   email?: string;
   department?: { name: string };
   rank?: { name: string };
-  [key: string]: any; // allow extra props from API
+  [key: string]: any; 
 }
 
 interface AuthContextType {
@@ -113,7 +113,6 @@ const fetchProfile = useCallback(async (token: string) => {
 
       const data = await res.json();
 
-      // Fix here: use data.data.accessToken and data.data.refreshToken directly (no tokens property)
       saveTokens({
         accessToken: data.data.accessToken,
         refreshToken: data.data.refreshToken,
@@ -128,6 +127,7 @@ const fetchProfile = useCallback(async (token: string) => {
     }
   };
 
+  // Register function
   const register = async (
     email: string,
     password: string,
@@ -169,6 +169,7 @@ const fetchProfile = useCallback(async (token: string) => {
     }
   };
 
+  // Send verification mail
   const sendVerificationMail = async (email: string) => {
     try {
       const res = await fetch(
@@ -192,6 +193,7 @@ const fetchProfile = useCallback(async (token: string) => {
     }
   };
 
+  // Verify email
   const verifyEmail = async (token: string) => {
     const res = await fetch(
       'https://memo-integration-server.onrender.com/api/auth/verify-email',
@@ -263,12 +265,12 @@ const fetchProfile = useCallback(async (token: string) => {
     restoreSession();
   }, [fetchProfile]);
 
-  // Periodic refresh every 4 minutes
+  // Periodic refresh every 5 minutes
   useEffect(() => {
     if (!refreshToken) return;
     const interval = setInterval(() => {
       refreshTokens();
-    }, 4 * 60 * 1000);
+    }, 5 * 60 * 1000);
     return () => clearInterval(interval);
   }, [refreshToken, refreshTokens]);
 
@@ -281,7 +283,7 @@ const fetchProfile = useCallback(async (token: string) => {
   );
 };
 
-// Hook to use auth
+//  useAuth hook
 export const useAuth = () => {
   const ctx = useContext(AuthContext);
   if (!ctx) throw new Error('useAuth must be used within AuthProvider');
