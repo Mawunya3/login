@@ -84,6 +84,7 @@ const fetchProfile = useCallback(async (token: string) => {
     });
   } catch (error) {
     clearTokens();
+    throw error;
   }
 }, []);
 

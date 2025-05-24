@@ -84,7 +84,7 @@ export default function LoginPage() {
           Forgot <span><Link href={'/'} className="  text-[#338cda]" >username / password</Link></span>?
         </h1>
         <h1 className="">
-          Don't have an account? <span><Link href={'/register'} className=" text-[#338cda]" > Sign Up</Link></span>
+          Don&apos;t have an account? <span><Link href={'/register'} className=" text-[#338cda]" > Sign Up</Link></span>
         </h1>
         {error && <p className="text-red-600">{error}</p>}
       </form>
