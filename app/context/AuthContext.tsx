@@ -16,7 +16,7 @@ interface User {
   email?: string;
   department?: { name: string };
   rank?: { name: string };
-  [key: string]: any; 
+  [key: string]: unknown; 
 }
 
 interface AuthContextType {
